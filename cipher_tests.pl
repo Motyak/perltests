@@ -6,6 +6,10 @@ use warnings;
 use File::Basename;
 use Cwd 'abs_path';
 
+use utf8;
+binmode STDOUT, ':utf8';
+binmode STDERR, ':utf8';
+
 my $CIPHER_FILENAME = abs_path(dirname(__FILE__)) . '/cipher.pl';
 require $CIPHER_FILENAME;
 
@@ -24,7 +28,7 @@ sub are_equals
 sub file_to_str
 {
     my ($filename) = @_;
-    open my $fh, '<', $filename or die "Can't open file $!";
+    open my $fh, '<:encoding(UTF-8)', $filename or die "Can't open file $!";
     read $fh, my $str, -s $fh;
     return $str;
 }
