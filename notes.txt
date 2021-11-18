@@ -1,0 +1,17 @@
+# traite les mots de moins de 4 caractères
+s/(^| |'|-)(\pL)(\pL?)(\pL)($|\.|,| |-)/gm
+
+
+# traite les most de 4 caractères ou plus
+s/(^| |'|-)(\pL)(\pL)(\pL*)(\pL)(\pL)($|\.|,| |-)/gm
+
+
+specifications by example
+behavior driven development
+
+
+1) We write examples as specifications
+2) We write test
+3) We implement solution
+4) We look for bugs
+5) We add new examples as specifications... (LOOP)
