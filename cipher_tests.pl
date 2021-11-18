@@ -4,9 +4,9 @@ use strict;
 use warnings;
 
 use File::Basename;
-use Cwd "abs_path";
+use Cwd 'abs_path';
 
-my $CIPHER_FILENAME = abs_path(dirname(__FILE__)) . "/cipher.pl";
+my $CIPHER_FILENAME = abs_path(dirname(__FILE__)) . '/cipher.pl';
 require $CIPHER_FILENAME;
 
 package tests;

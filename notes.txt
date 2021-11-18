@@ -1,10 +1,13 @@
 # traite les mots de moins de 4 caractères
-s/(^| |'|-)(\pL)(\pL?)(\pL)(\.|,| |-)/\1\4\3\2\5/gm
+s/(^| |'|-)(\pL)(\pL?)(\pL)(?=\.|,| |-)/\1\4\3\2/gm
 
 
 # traite les most de 4 caractères ou plus
-s/(^| |'|-)(\pL)(\pL)(\pL*)(\pL)(\pL)(\.|,| |-)/\1\3\2\4\6\5\7/gm
+s/(^| |'|-)(\pL)(\pL)(\pL*)(\pL)(\pL)(?=\.|,| |-)/\1\3\2\4\6\5/gm
 
+on utilise les positive lookahead à la place des capture
+(pour les suffix de mots) afin de ne pas consommer les suffixes
+de mots et pouvoir chain substitute plusieurs mots qui se suivent.
 
 specifications by example
 behavior driven development
