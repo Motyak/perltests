@@ -1,14 +1,10 @@
-#!/usr/bin/env perl
-
-use strict;
-use warnings;
-
 use File::Basename;
 use Cwd 'abs_path';
-
-use utf8;
-binmode STDOUT, ':utf8';
-binmode STDERR, ':utf8';
+if(!defined($INCLUDE_ONCE))
+{
+    my $INCLUDE_ONCE_FILENAME = abs_path(dirname(__FILE__)) . '/include_once.pl';
+    require $INCLUDE_ONCE_FILENAME;
+}
 
 my $CIPHER_FILENAME = abs_path(dirname(__FILE__)) . '/cipher.pl';
 require $CIPHER_FILENAME;

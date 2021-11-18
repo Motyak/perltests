@@ -8,7 +8,9 @@ if(!defined($INCLUDE_ONCE))
     require $INCLUDE_ONCE_FILENAME;
 }
 
-my $CIPHER_TESTS_FILENAME = abs_path(dirname(__FILE__)) . '/cipher_tests.pl';
-require $CIPHER_TESTS_FILENAME;
+my $CIPHER_FILENAME = abs_path(dirname(__FILE__)) . '/cipher.pl';
+require $CIPHER_FILENAME;
 
-cipher_tests::corpus1();
+$input = <STDIN>;
+chomp $input;
+print(cipher::do_it($input) . "\n");
