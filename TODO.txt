@@ -1,0 +1,6 @@
+echo bonjour | ./main.pl
+=> ne marche pas
+
+cat notes.txt | ./main.pk
+=> ne marche pas
+
