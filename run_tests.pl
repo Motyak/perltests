@@ -52,13 +52,12 @@ sub corpus
 
         if(!tests::are_equals($output, $expecting))
         {
-            warn "'$_' failed \n\n input='" . $input 
-                    . "' \n\n expecting='" . $expecting
-                    . "' \n\n output='" . $output . "'\n";
-            return 0;
+            warn "'$_' failed \n\n input:\n'''" . $input 
+                    . "''' \n\n expecting:\n'''" . $expecting
+                    . "''' \n\n output:\n'''" . $output . "'''\n";
+            exit 1;
         }
     }
-    return 1;
 }
 
 cipher_tests::corpus();
