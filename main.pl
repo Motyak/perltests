@@ -11,6 +11,20 @@ if(!defined($INCLUDE_ONCE))
 my $CIPHER_FILENAME = abs_path(dirname(__FILE__)) . '/cipher.pl';
 require $CIPHER_FILENAME;
 
-$input = <STDIN>;
-chomp $input;
-print(cipher::do_it($input) . "\n");
+
+my @input;
+while (<STDIN>)
+{
+    /\S/ or last; # last line if empty
+    push @input, $_;
+}
+my $joined_input = join('', @input);
+print(cipher::do_it($joined_input));
+
+
+
+# my $input = <STDIN>;
+# chomp $input;
+# # print(cipher::do_it($input) . "\n");
+# print($input);
+# print(cipher::do_it($input));

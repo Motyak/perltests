@@ -65,4 +65,20 @@ sub echobonjour
     return 1;
 }
 
+sub multiplelines
+{
+    my $input = tests::file_to_str('multiplelines.txt');
+    my $expecting = tests::file_to_str('multiplelines_out.txt');
+    my $output = $FUNCTION_TO_TEST->($input);
+
+    if(!tests::are_equals($output, $expecting))
+    {
+        warn "'multiplelines' failed \n\n input='" . $input 
+                . "' \n\n expecting='" . $expecting
+                . "' \n\n output='" . $output . "'\n";
+        return 0;
+    }
+    return 1;
+}
+
 1;

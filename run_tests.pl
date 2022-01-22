@@ -13,3 +13,4 @@ require $CIPHER_TESTS_FILENAME;
 
 cipher_tests::corpus1();
 cipher_tests::echobonjour();
+cipher_tests::multiplelines();
