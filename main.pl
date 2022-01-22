@@ -15,16 +15,7 @@ require $CIPHER_FILENAME;
 my @input;
 while (<STDIN>)
 {
-    /\S/ or last; # last line if empty
     push @input, $_;
 }
 my $joined_input = join('', @input);
 print(cipher::do_it($joined_input));
-
-
-
-# my $input = <STDIN>;
-# chomp $input;
-# # print(cipher::do_it($input) . "\n");
-# print($input);
-# print(cipher::do_it($input));
