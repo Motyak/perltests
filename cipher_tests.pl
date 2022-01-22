@@ -49,4 +49,20 @@ sub corpus1
     return 1;
 }
 
+sub echobonjour
+{
+    my $input = tests::file_to_str('echobonjour.txt');
+    my $expecting = tests::file_to_str('echobonjour_out.txt');
+    my $output = $FUNCTION_TO_TEST->($input);
+
+    if(!tests::are_equals($output, $expecting))
+    {
+        warn "'echobonjour' failed \n\n input='" . $input 
+                . "' \n\n expecting='" . $expecting
+                . "' \n\n output='" . $output . "'\n";
+        return 0;
+    }
+    return 1;
+}
+
 1;
