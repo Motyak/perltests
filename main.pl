@@ -21,13 +21,11 @@ sub main
     print(cipher::do_it($joined_input));
 }
 
-my $STDIN_ENDING_TOKEN = "cestleclate\n";
 sub main_alt
 {
     my @input;
     while (<STDIN>)
     {
-        last if $_ eq $STDIN_ENDING_TOKEN;
         push @input, $_;
     }
     my $joined_input = join('', @input);
