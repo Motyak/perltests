@@ -21,23 +21,12 @@ sub main
     print(cipher::do_it($joined_input));
 }
 
-sub main_alt
-{
-    my @input;
-    while (<STDIN>)
-    {
-        push @input, $_;
-    }
-    my $joined_input = join('', @input);
-    print(cipher::do_it($joined_input));
-}
-
 # version pour serveur
 if(@ARGV)
 {
     while(1)
     {
-        main_alt();
+        main();
     }
 }
 
