@@ -7,8 +7,8 @@ if(!defined($INCLUDE_ONCE))
     require $INCLUDE_ONCE_FILENAME;
 }
 
-my $CIPHER_FILENAME = abs_path(dirname(__FILE__)) . '/cipher.pl';
-require $CIPHER_FILENAME;
+my $SRC_FILENAME = abs_path(dirname(__FILE__)) . '/cipher.pl';
+require $SRC_FILENAME;
 
 package tests;
 
@@ -32,32 +32,32 @@ sub file_to_str
 
 package cipher_tests;
 
-my $FUNCTION_TO_TEST = \&cipher::do_it;
+my $EXAMPLES_DIR = './corpus/';
+my $FUNCTION_TO_TEST = \&cipher_tests::do_it;
 
-sub corpus
+sub test
 {
     # récupérer tous les noms de fichiers à tester dans le répertoire corpus #
-    opendir my $dir, './corpus/' or die "Cannot open directory: $!";
-    my @corpus = grep{/\.*(?<!_out)\.txt/g} readdir $dir;
+    opendir my $dir, $EXAMPLES_DIR or die "Cannot open directory: $!";
+    my @examples = grep{/\.*(?<!_out)\.txt/g} readdir $dir;
     closedir $dir;
 
     # faire les tests #
-    foreach(@corpus)
+    foreach(@examples)
     {
-        $_ =~ s/(\.*).txt/\1/g;
+        $_ =~ s/(\.*).in.txt/\1/g;
         
-        my $input = tests::file_to_str('./corpus/' . $_ . '.txt');
-        my $expecting = tests::file_to_str('./corpus/' . $_ . '_out.txt');
-        my $output = $FUNCTION_TO_TEST->($input);
+        my $input = tests::file_to_str($EXAMPLES_DIR . $_ . '.in.txt');
+        my $expecting = tests::file_to_str($EXAMPLES_DIR . $_ . '.out.txt');
+        my $output = '' . $FUNCTION_TO_TEST->($input);
 
         if(!tests::are_equals($output, $expecting))
         {
-            warn "'$_' failed \n\n input:\n'''" . $input 
-                    . "''' \n\n expecting:\n'''" . $expecting
-                    . "''' \n\n output:\n'''" . $output . "'''\n";
+            warn "Test '$_' is failing: \n-Expected: '''" . $input 
+                    . "'''\n-Had: '''" . $output . "'''\n";
             exit 1;
         }
     }
 }
 
-cipher_tests::corpus();
+cipher_tests::test();
