@@ -19,3 +19,7 @@ behavior driven development
 4) We look for bugs
 5) We add new examples as specifications... (LOOP)
 
+_________________________________
+
+Ecrire le script perl qui permettra de créer le fichier 'corpus.txt' à partir
+du répertoire 'corpus'.
