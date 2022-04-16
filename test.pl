@@ -6,6 +6,9 @@ binmode STDIN, ':utf8';
 binmode STDOUT, ':utf8';
 binmode STDERR, ':utf8';
 
+use File::Basename 'dirname';
+use Cwd 'abs_path';
+
 my $SRC_FILENAME = abs_path(dirname(__FILE__)) . '/cipher.pl';
 require $SRC_FILENAME;
 
@@ -32,19 +35,19 @@ sub file_to_str
 package cipher_tests;
 
 my $EXAMPLES_DIR = './corpus/';
-my $FUNCTION_TO_TEST = \&cipher_tests::do_it;
+my $FUNCTION_TO_TEST = \&cipher::do_it;
 
 sub test
 {
     # récupérer tous les noms de fichiers à tester dans le répertoire corpus #
     opendir my $dir, $EXAMPLES_DIR or die "Cannot open directory: $!";
-    my @examples = grep{/\.*(?<!_out)\.txt/g} readdir $dir;
+    my @examples = grep{/.*\.in\.txt/g} readdir $dir;
     closedir $dir;
 
     # faire les tests #
     foreach(@examples)
     {
-        $_ =~ s/(\.*).in.txt/\1/g;
+        $_ =~ s/(.*)\.in\.txt/$1/g;
         
         my $input = tests::file_to_str($EXAMPLES_DIR . $_ . '.in.txt');
         my $expecting = tests::file_to_str($EXAMPLES_DIR . $_ . '.out.txt');

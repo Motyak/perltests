@@ -1,4 +1,3 @@
-#!/usr/bin/env perl
 use strict;
 use warnings;
 use utf8;
@@ -12,9 +11,9 @@ sub do_it
 {
     my ($input) = @_;
     # pour les mots de 2 ou 3 lettres, on inverse première et dernière
-    $input =~ s/(^| |'|-)(\pL)(\pL?)(\pL)(?=\.|,| |-|'|\?|\!|$)/\1\4\3\2/gm;
+    $input =~ s/(^| |'|-)(\pL)(\pL?)(\pL)(?=\.|,| |-|'|\?|\!|$)/$1$4$3$2/gm;
     # pour les mots de plus de 4+ lettres, swap deux premières et swap deux dernières
-    $input =~ s/(^| |'|-)(\pL)(\pL)(\pL*)(\pL)(\pL)(?=\.|,| |-|'|\?|\!|$)/\1\3\2\4\6\5/gm;
+    $input =~ s/(^| |'|-)(\pL)(\pL)(\pL*)(\pL)(\pL)(?=\.|,| |-|'|\?|\!|$)/$1$3$2$4$6$5/gm;
     # on remplace les 'v' par des 'ù'
     $input =~ s/v/\xf9/gm;
     # on remplace les 'u' par des 'v'

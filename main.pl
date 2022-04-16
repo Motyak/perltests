@@ -6,6 +6,9 @@ binmode STDIN, ':utf8';
 binmode STDOUT, ':utf8';
 binmode STDERR, ':utf8';
 
+use File::Basename 'dirname';
+use Cwd 'abs_path';
+
 my $CIPHER_FILENAME = abs_path(dirname(__FILE__)) . '/cipher.pl';
 require $CIPHER_FILENAME;
 
